@@ -1,0 +1,305 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Azure.DigitalTwins.Parser.Common</name>
+    </assembly>
+    <members>
+        <member name="T:Azure.DigitalTwins.Parser.ContextResolver">
+            <summary>
+            Delegate used for resolving JSON-LD context.
+            </summary>
+            <param name="contextId">The DTMI that specifies the context.</param>
+            <returns>JToken containing the JSON-LD context.</returns>
+        </member>
+        <member name="T:Azure.DigitalTwins.Parser.Dtmi">
+            <summary>
+            Digital Twin Modeling Identifier.
+            </summary>
+        </member>
+        <member name="M:Azure.DigitalTwins.Parser.Dtmi.#ctor(System.Uri,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Azure.DigitalTwins.Parser.Dtmi"/> class from a Uri instance.
+            </summary>
+            <param name="uri">The URI to copy from.</param>
+            <param name="skipValidation">Skips the validation check.</param>
+        </member>
+        <member name="M:Azure.DigitalTwins.Parser.Dtmi.#ctor(System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Azure.DigitalTwins.Parser.Dtmi"/> class from a string.
+            </summary>
+            <param name="value">String value of the DTMI.</param>
+            <param name="skipValidation">Skips the validation check.</param>
+        </member>
+        <member name="P:Azure.DigitalTwins.Parser.Dtmi.Version">
+            <summary>
+            Gets the version of the DTMI as an integer.
+            </summary>
+        </member>
+        <member name="P:Azure.DigitalTwins.Parser.Dtmi.Versionless">
+            <summary>
+            Gets the portion of the DTMI that preceeds the version number.
+            </summary>
+        </member>
+        <member name="P:Azure.DigitalTwins.Parser.Dtmi.Labels">
+            <summary>
+            Gets the sequence of labels in the path portion of the DTMI.
+            </summary>
+        </member>
+        <member name="T:Azure.DigitalTwins.Parser.HydrationException">
+            <summary>
+            Indicates that hydrating a packaged object model failed.
+            </summary>
+        </member>
+        <member name="M:Azure.DigitalTwins.Parser.HydrationException.#ctor(System.Collections.Generic.IList{Azure.DigitalTwins.Parser.Dtmi})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Azure.DigitalTwins.Parser.HydrationException"/> class.
+            </summary>
+            <param name="undefinedIdentifiers">A list of DTMIs that lack definitions.</param>
+        </member>
+        <member name="P:Azure.DigitalTwins.Parser.HydrationException.UndefinedIdentifiers">
+            <summary>
+            Gets a list of DTMIs that lack definitions.
+            </summary>
+        </member>
+        <member name="M:Azure.DigitalTwins.Parser.HydrationException.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Azure.DigitalTwins.Parser.IllegalExternalContextException">
+            <summary>
+            Indicates that a language extension included an external context reference, which is not allowed.
+            </summary>
+        </member>
+        <member name="M:Azure.DigitalTwins.Parser.IllegalExternalContextException.#ctor(System.Uri)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Azure.DigitalTwins.Parser.IllegalExternalContextException"/> class.
+            </summary>
+            <param name="contextId">The URI of the context reference.</param>
+        </member>
+        <member name="P:Azure.DigitalTwins.Parser.IllegalExternalContextException.ContextId">
+            <summary>
+            Gets the identifier of the context reference.
+            </summary>
+        </member>
+        <member name="T:Azure.DigitalTwins.Parser.JsonLdException">
+            <summary>
+            Encapsulates syntactic and grammatical errors in JSON-LD text.
+            </summary>
+        </member>
+        <member name="M:Azure.DigitalTwins.Parser.JsonLdException.#ctor(System.Exception,System.Int32,System.Collections.Generic.IList{Azure.DigitalTwins.Parser.Dtmi})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Azure.DigitalTwins.Parser.JsonLdException"/> class.
+            </summary>
+            <param name="innerException">The exception being encapsulated.</param>
+            <param name="enumerationIndex">The index of the JSON text that contains the error.</param>
+            <param name="resolvingIdentifiers">The list of DTMIs that were being resolved, if any.</param>
+        </member>
+        <member name="P:Azure.DigitalTwins.Parser.JsonLdException.EnumerationIndex">
+            <summary>
+            Gets the index of the JSON text that contains the error.
+            </summary>
+        </member>
+        <member name="P:Azure.DigitalTwins.Parser.JsonLdException.ResolvingIdentifiers">
+            <summary>
+            Gets the list of DTMIs that were being resolved if the exception occured on JSON text returned by the DtmiResolver.
+            Null if the exception occurred on JSON text passed to ParseAsync().
+            </summary>
+        </member>
+        <member name="M:Azure.DigitalTwins.Parser.JsonLdException.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Azure.DigitalTwins.Parser.ParsingError">
+            <summary>
+            Provides information about a model error that was discovered during DTDL parsing.
+            </summary>
+        </member>
+        <member name="P:Azure.DigitalTwins.Parser.ParsingError.PrimaryID">
+            <summary>
+            Gets or sets the primary identifier relating to the error, if any.
+            </summary>
+        </member>
+        <member name="P:Azure.DigitalTwins.Parser.ParsingError.SecondaryID">
+            <summary>
+            Gets or sets the secondary identifier relating to the error, if any.
+            </summary>
+        </member>
+        <member name="P:Azure.DigitalTwins.Parser.ParsingError.Property">
+            <summary>
+            Gets or sets the specific property relating to the error, if any.
+            </summary>
+        </member>
+        <member name="P:Azure.DigitalTwins.Parser.ParsingError.Value">
+            <summary>
+            Gets or sets the value of the specific property relating to the error, if any.
+            </summary>
+        </member>
+        <member name="P:Azure.DigitalTwins.Parser.ParsingError.Cause">
+            <summary>
+            Gets or sets a textual description of the cause of the error.
+            </summary>
+        </member>
+        <member name="P:Azure.DigitalTwins.Parser.ParsingError.Action">
+            <summary>
+            Gets or sets a textual description of an action to resolve the error.
+            </summary>
+        </member>
+        <member name="P:Azure.DigitalTwins.Parser.ParsingError.Message">
+            <summary>
+            Gets a textual message describing the error; this is a concatenation of <c>Cause</c> and <c>Action</c>.
+            </summary>
+        </member>
+        <member name="P:Azure.DigitalTwins.Parser.ParsingError.ValidationID">
+            <summary>
+            Gets or sets a valididation ID that characterizes the category of error.
+            </summary>
+        </member>
+        <member name="M:Azure.DigitalTwins.Parser.ParsingError.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Azure.DigitalTwins.Parser.ParsingException">
+            <summary>
+            Indicates that one or more model errors were discovered during DTDL parsing.
+            </summary>
+        </member>
+        <member name="M:Azure.DigitalTwins.Parser.ParsingException.#ctor(System.Collections.Generic.IList{Azure.DigitalTwins.Parser.ParsingError})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Azure.DigitalTwins.Parser.ParsingException"/> class.
+            </summary>
+            <param name="errors">A list of the errors that were discovered.</param>
+        </member>
+        <member name="P:Azure.DigitalTwins.Parser.ParsingException.Errors">
+            <summary>
+            Gets a list of the errors that were discovered during DTDL parsing.
+            </summary>
+        </member>
+        <member name="M:Azure.DigitalTwins.Parser.ParsingException.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="T:Azure.DigitalTwins.Parser.ResolutionException">
+            <summary>
+            Indicates that the resolution of a DTMI failed.
+            </summary>
+        </member>
+        <member name="M:Azure.DigitalTwins.Parser.ResolutionException.#ctor(System.String,System.Collections.Generic.List{Azure.DigitalTwins.Parser.Dtmi})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Azure.DigitalTwins.Parser.ResolutionException"/> class.
+            </summary>
+            <param name="message">An explanation of the failure.</param>
+            <param name="undefinedIdentifiers">List of DTMIs that lack definitions and require resolution.</param>
+        </member>
+        <member name="P:Azure.DigitalTwins.Parser.ResolutionException.UndefinedIdentifiers">
+            <summary>
+            Gets a list of DTMIs that lack definitions and require resolution.
+            </summary>
+        </member>
+        <member name="T:Azure.DigitalTwins.Parser.AggregateTiming">
+            <summary>
+            Provides aggregate timing information across a set of stopwatches.
+            </summary>
+        </member>
+        <member name="M:Azure.DigitalTwins.Parser.AggregateTiming.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Azure.DigitalTwins.Parser.AggregateTiming"/> class.
+            </summary>
+        </member>
+        <member name="P:Azure.DigitalTwins.Parser.AggregateTiming.Count">
+            <summary>
+            Gets or sets the count of times the timing was triggered.
+            </summary>
+        </member>
+        <member name="P:Azure.DigitalTwins.Parser.AggregateTiming.Elapsed">
+            <summary>
+            Gets or sets the aggregate elapsed time across all timings.
+            </summary>
+        </member>
+        <member name="T:Azure.DigitalTwins.Parser.CommonValues">
+            <summary>
+            Static class that holds values used by the Common library or by both the Metaparser and Parser.
+            </summary>
+        </member>
+        <member name="F:Azure.DigitalTwins.Parser.CommonValues.DtmiScheme">
+            <summary>
+            The URI scheme for DTMIs.
+            </summary>
+        </member>
+        <member name="F:Azure.DigitalTwins.Parser.CommonValues.DtmiPrefix">
+            <summary>
+            The URI prefix for DTMIs.
+            </summary>
+        </member>
+        <member name="F:Azure.DigitalTwins.Parser.CommonValues.BlankNodePrefix">
+            <summary>
+            The URI prefix for blank nodes.
+            </summary>
+        </member>
+        <member name="F:Azure.DigitalTwins.Parser.CommonValues.DtmmPrefix">
+            <summary>
+            The URI prefix for Digital Twin Metamodel identifiers.
+            </summary>
+        </member>
+        <member name="P:Azure.DigitalTwins.Parser.CommonValues.PartnerNames">
+            <summary>
+            Gets a list of names used in partner extensions.
+            </summary>
+        </member>
+        <member name="T:Azure.DigitalTwins.Parser.CountingStopwatch">
+            <summary>
+            A <c>Stopwatch</c> that also counts the number of times it is started.
+            </summary>
+        </member>
+        <member name="M:Azure.DigitalTwins.Parser.CountingStopwatch.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Azure.DigitalTwins.Parser.CountingStopwatch"/> class.
+            </summary>
+        </member>
+        <member name="P:Azure.DigitalTwins.Parser.CountingStopwatch.Count">
+            <summary>
+            Gets the count of times the stopwatch is started.
+            </summary>
+        </member>
+        <member name="M:Azure.DigitalTwins.Parser.CountingStopwatch.StartAndIncrement">
+            <summary>
+            Starts the stopwatch and incremens the count.
+            </summary>
+        </member>
+        <member name="T:Azure.DigitalTwins.Parser.IDtdlVersionCollection">
+            <summary>
+            Interface for providing a collection of DTDL version identifiers.
+            </summary>
+        </member>
+        <member name="P:Azure.DigitalTwins.Parser.IDtdlVersionCollection.DtdlVersions">
+            <summary>
+            Gets the DTDL version numbers.
+            </summary>
+        </member>
+        <member name="T:Azure.DigitalTwins.Parser.IResultFormatter">
+            <summary>
+            Interface for formatting results returned from formatted select queries.
+            </summary>
+        </member>
+        <member name="M:Azure.DigitalTwins.Parser.IResultFormatter.Install(System.String,System.String)">
+            <summary>
+            Install a value in the formatter.
+            </summary>
+            <param name="key">The key for the value.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Azure.DigitalTwins.Parser.IResultFormatter.ToString">
+            <summary>
+            Get a string representation of the result.
+            </summary>
+            <returns>The formatted result as a string.</returns>
+        </member>
+        <member name="T:Azure.DigitalTwins.Parser.IResultFormatterFactory">
+            <summary>
+            Interface for a factory that creates objects exporting <c>IResultFormatter</c>.
+            </summary>
+        </member>
+        <member name="M:Azure.DigitalTwins.Parser.IResultFormatterFactory.Create(System.String)">
+            <summary>
+            Create a new <c>IResultFormatter</c>.
+            </summary>
+            <param name="formatString">The format string.</param>
+            <returns>A new <c>IResultFormatter</c>.</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Azure.DigitalTwins.Parser">
+      <HintPath>./parser/Release/netstandard2.0/Azure.DigitalTwins.Parser.dll</HintPath>
+    </Reference>
+    <Reference Include="Azure.DigitalTwins.Parser.Common">
+      <HintPath>./parser/Release/netstandard2.0/Azure.DigitalTwins.Parser.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="dotNetRDF" Version="2.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="System.CommandLine.DragonFruit" Version="0.3.0-alpha.20427.1" />
+  </ItemGroup>
+</Project>
