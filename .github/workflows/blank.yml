@@ -25,4 +25,7 @@ jobs:
       - uses: jitterbit/get-changed-files@v1  
         with:
           dotnet-version: '3.1.x' # SDK Version to use; x will use the latest version of the 3.1 channel
-      - run: dotnet run ./scripts/dotnet_validate/dotnet_validate.csproj -- --files ${{ steps.files.outputs.added_modified }}
+      - run: | 
+          pwd
+          ls -la
+          dotnet run ./scripts/dotnet_validate/dotnet_validate.csproj -- --files ${{ steps.files.outputs.added_modified }}
