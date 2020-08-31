@@ -21,11 +21,9 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - uses: jitterbit/get-changed-files@v1
       - uses: actions/setup-dotnet@v1
-      - uses: jitterbit/get-changed-files@v1  
         with:
           dotnet-version: '3.1.x' # SDK Version to use; x will use the latest version of the 3.1 channel
       - run: | 
-          pwd
-          ls -la
-          dotnet run ./scripts/dotnet_validate/dotnet_validate.csproj -- --files ${{ steps.files.outputs.added_modified }}
+          dotnet run --project ./scripts/dotnet_validate/dotnet_validate.csproj -- --files ${{ steps.files.outputs.added_modified }}
