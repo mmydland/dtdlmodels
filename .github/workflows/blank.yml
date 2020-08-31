@@ -33,4 +33,4 @@ jobs:
           for changed_file in ${{ steps.files.outputs.added_modified }}; do
             fileArgs=$fileArgs' "'./${changed_file}'"';
           done
-          dotnet run --project ./scripts/dotnet_validate/dotnet_validate.csproj -- --files ${fileArgs}
+          dotnet run --project ./scripts/dotnet_validate/dotnet_validate.csproj -- --files "${fileArgs[@]}"
