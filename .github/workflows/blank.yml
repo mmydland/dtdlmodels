@@ -31,6 +31,6 @@ jobs:
           dotnet-version: '3.1.x' # SDK Version to use; x will use the latest version of the 3.1 channel
       - run: | 
           for changed_file in ${{ steps.files.outputs.added_modified }}; do
-            files=$files`printf '"./%s" '${added_modified_file}'
+            files=$files`printf '"./%s" '${added_modified_file}'`
           done
           dotnet run --project ./scripts/dotnet_validate/dotnet_validate.csproj -- --files `$files`
