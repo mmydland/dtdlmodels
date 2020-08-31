@@ -20,11 +20,18 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      - uses: jitterbit/get-changed-files@v1
+      - id: checkout
+        uses: actions/checkout@v2
+        
+      - id: files
+        uses: jitterbit/get-changed-files@v1
+      - run: |
+          addedFiles=${{ steps.files.outputs.added_modified }}
+          echo $addedFiles
+          
+      - id: validate  
       - uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '3.1.x' # SDK Version to use; x will use the latest version of the 3.1 channel
       - run: | 
-          ${{ steps.files.outputs.added_modified }}
-          dotnet run --project ./scripts/dotnet_validate/dotnet_validate.csproj -- --files ${{ steps.files.outputs.added_modified }}
+          dotnet run --project ./scripts/dotnet_validate/dotnet_validate.csproj -- --files $addedFiles
