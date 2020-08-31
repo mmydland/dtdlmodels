@@ -30,4 +30,4 @@ jobs:
         with:
           dotnet-version: '3.1.x' # SDK Version to use; x will use the latest version of the 3.1 channel
       - run: | 
-          dotnet run --project ./scripts/dotnet_validate/dotnet_validate.csproj -- --files `${{ steps.files.outputs.added_modified }}`
+          dotnet run --project ./scripts/dotnet_validate/dotnet_validate.csproj -- --files "${{ steps.files.outputs.added_modified }}"
