@@ -53,7 +53,7 @@
           "name": "since",
           "displayName": "Since",
           "description": "Period to return the max-min report.",
-          "schema": "dateTime"
+          "schema": "datetime"
         },
         "response": {
           "name" : "tempReport",
