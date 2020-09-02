@@ -1,0 +1,8 @@
+# Global code owners
+* @ridomin # Rido owns everything becuase this is his repo
+
+# Thermostat owners
+
+# Order matters, permissions are always additive
+# Please turn on branch protection in sthe Settings/Branches to enforce owners are required to perform code reviews of PR
+# More information can be found at https://github.blog/2017-07-06-introducing-code-owners/
